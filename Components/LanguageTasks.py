@@ -1,14 +1,9 @@
-import openai
 from dotenv import load_dotenv
 import os
 import json
 
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API")
-
-if not openai.api_key:
-    raise ValueError("API key not found. Make sure it is defined in the .env file.")
+from ollama import chat
+from ollama import ChatResponse
 
 
 # Function to extract start and end times
@@ -57,16 +52,12 @@ def GetHighlight(Transcription):
     print("Getting Highlight from Transcription ")
     try:
 
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-2024-05-13",
-            temperature=0.7,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": Transcription + system},
-            ],
-        )
+        response: ChatResponse = chat(model='llama3.2', messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": Transcription + system},
+        ])
 
-        json_string = response.choices[0].message.content
+        json_string = response['message']['content']
         json_string = json_string.replace("json", "")
         json_string = json_string.replace("```", "")
         # print(json_string)
