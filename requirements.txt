@@ -1,4 +1,5 @@
-faster_whisper==1.0.1
+# faster_whisper==1.0.1
+whisperx
 ffmpeg==1.4
 ffmpeg_python==0.2.0
 moviepy==1.0.3
@@ -7,9 +8,9 @@ opencv_python==4.7.0.72
 opencv_python_headless==4.9.0.80
 python-dotenv==1.0.1
 pytubefix
-torch
+# torch
 webrtcvad-wheels
 pydub
 # openai==1.44.1
 ollama
---extra-index-url https://download.pytorch.org/whl/cu121
+# --extra-index-url https://download.pytorch.org/whl/cu121
